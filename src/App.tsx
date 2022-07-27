@@ -1,7 +1,7 @@
 import React from "react";
 import ThemeToggle from "./components/ThemeToggle";
 import useTheme from "./hooks/useTheme";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 
