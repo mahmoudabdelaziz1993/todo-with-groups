@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function useTheme() {
+export default function useTheme(): [string, () => void] {
     const [Theme, setTheme] = useState("light");
-    const toggleTheme = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        setTheme(prev => (prev === "light" ? "dark" : "light"));
-    }
+
+    let temp = Theme === "light" ? "dark" : "light"
+
+    const toggleTheme = () => setTheme(temp);
+
 
     return [Theme, toggleTheme]
 

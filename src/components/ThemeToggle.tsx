@@ -1,13 +1,14 @@
 import React from "react";
-import useTheme from "../hooks/useTheme";
 
-type Props = {};
-
-const ThemeToggle = (props: Props) => {
-  const [Theme, toggleTheme] = useTheme();
-
+const ThemeToggle = ({
+  Theme,
+  toggleTheme,
+}: {
+  Theme: string;
+  toggleTheme: () => void;
+}) => {
   return (
-    <label className="swap">
+    <label className="swap cursor-pointer">
       <input
         type="checkbox"
         // className="toggle"

@@ -3,7 +3,11 @@ import React from "react";
 type Props = {};
 
 const Home = (props: Props) => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <h1 className="text-2xl">home</h1>
+    </div>
+  );
 };
 
 export default Home;
