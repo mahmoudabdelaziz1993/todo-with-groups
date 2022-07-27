@@ -7,7 +7,7 @@ type Props = {};
 
 const HomeHeader = (props: Props) => {
   return (
-    <div className="flex shadow-lg justify-between p-7">
+    <div className="flex shadow-lg justify-between md:p-7 p-2 flex-wrap gap-4">
       <div className="flex gap-4">
         <div className="w-12">
           <img src={emoji} alt="emoji" />
@@ -17,12 +17,12 @@ const HomeHeader = (props: Props) => {
           <p>Let’s start your tasks NOW!</p>
         </div>
       </div>
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 items-center ">
         <MdSearch className="text-2xl" />
         <MdNotifications className="text-2xl" />
         <div className="avatar">
           <div className="w-10 rounded-full">
-            <img src="https://placeimg.com/192/192/people" />
+            <img src="https://placeimg.com/192/192/people" alt="user image" />
           </div>
         </div>
       </div>

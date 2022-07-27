@@ -6,15 +6,17 @@ import {
   MdAdd,
   MdStar,
 } from "react-icons/md";
+
 // @ts-ignore
 import logo from "../assets/images/logo.svg";
 import HomeHeader from "../components/HomeHeader";
+import { GoPrimitiveDot } from "react-icons/go";
 
 type Props = {};
 
 const Home = (props: Props) => {
   return (
-    <div className="flex  flex-grow artboard">
+    <div className="flex  flex-grow artboard sm:flex-row flex-col">
       {/* Left side */}
       <div className=" max-w-sm bg-base-200 pt-8 px-14">
         {/* Logo */}
@@ -27,26 +29,26 @@ const Home = (props: Props) => {
             <span>Groups</span>
           </li>
           <li>
-            <a href="#">
+            <a href="#!">
               <MdDraw />
               Design
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="#!">
               <MdOutlineCode />
               Development
             </a>
           </li>
 
           <li>
-            <a href="#">
+            <a href="#!">
               <MdLoyalty />
               Markting{" "}
             </a>
           </li>
           <li>
-            <a href="#" className="btn btn-primary text-primary-content">
+            <a href="#!" className="btn btn-primary text-primary-content">
               <MdAdd />
               add group
             </a>
@@ -54,10 +56,10 @@ const Home = (props: Props) => {
         </ul>
       </div>
       {/* right side */}
-      <div className="flex-grow flex flex-col gap-2">
+      <div className="flex-grow flex flex-col gap-2 flex-wrap">
         <HomeHeader />
         {/* sub Header */}
-        <div className="flex px-14 justify-between py-7">
+        <div className="flex md:px-14 justify-between md:py-7 p-2 flex-wrap gap-2">
           <div className="flex items-end gap-4">
             <div className="">
               <h3 className="text-lg font-medium">Task Meter 25/50</h3>
@@ -67,7 +69,7 @@ const Home = (props: Props) => {
                 max="50"
               ></progress>
             </div>
-            <p className="text-warning inline-flex gap-2">
+            <p className="text-warning inline-flex gap-2 items-center">
               <MdStar />
               Good Job!
             </p>
@@ -79,6 +81,26 @@ const Home = (props: Props) => {
         </div>
 
         {/* sections */}
+        <div className="flex gap-4 flex-grow md:p-7 p-2 flex-wrap ">
+          <div className="flex-grow shadow-xl p-4 rounded-lg">
+            <h3 className="text-xl font-medium inline-flex gap-2 items-center">
+              <GoPrimitiveDot className="text-secondary" /> Todo
+            </h3>
+            <div className="divider bg-secondary h-1"></div>
+          </div>
+          <div className="flex-grow shadow-xl p-4 rounded-lg">
+            <h3 className="text-xl font-medium inline-flex gap-2 items-center">
+              <GoPrimitiveDot className="text-accent" /> On Progress
+            </h3>
+            <div className="divider bg-accent h-1"></div>
+          </div>
+          <div className="flex-grow shadow-xl p-4 rounded-lg">
+            <h3 className="text-xl font-medium inline-flex gap-2 items-center">
+              <GoPrimitiveDot className="text-success" /> Done
+            </h3>
+            <div className="divider bg-success h-1"></div>
+          </div>
+        </div>
       </div>
     </div>
   );
