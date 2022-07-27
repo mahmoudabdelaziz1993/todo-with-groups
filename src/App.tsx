@@ -8,8 +8,8 @@ import Login from "./pages/Login";
 function App() {
   const [Theme, toggleTheme] = useTheme();
   return (
-    <div className="artboard  min-h-screen p-4" data-theme={Theme}>
-      <div className="flex flex-row-reverse  ">
+    <div className="artboard  min-h-screen  flex flex-col" data-theme={Theme}>
+      <div className="flex flex-row-reverse p-4 absolute left-10 bottom-0 ">
         <ThemeToggle Theme={Theme} toggleTheme={toggleTheme} />
       </div>
       <Routes>
