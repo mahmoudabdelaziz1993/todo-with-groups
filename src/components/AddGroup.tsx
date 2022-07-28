@@ -1,17 +1,28 @@
 import React from "react";
 import { MdSave, MdClose } from "react-icons/md";
 import { useForm } from "react-hook-form";
+import { addNewGroup } from "../utils/ApiCalls";
+import { Igroup } from "../utils/Types";
 
-type Props = {};
+type Props = {
+  setGvlidate: Function;
+};
 
-const AddGroup = (props: Props) => {
+const AddGroup = ({ setGvlidate }: Props) => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
+    reset,
   } = useForm();
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = async (data: any) => {
+    let { name } = data;
+    let res: Igroup = await addNewGroup(name);
+    if (res.id) {
+      setGvlidate(res.id);
+      reset();
+    }
+  };
 
   return (
     <div className="modal modal-bottom sm:modal-middle" id="add-group">

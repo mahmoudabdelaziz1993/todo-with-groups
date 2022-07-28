@@ -1,37 +1,27 @@
 import React, { useEffect, useState } from "react";
-import {
-  MdDraw,
-  MdOutlineCode,
-  MdLoyalty,
-  MdAdd,
-  MdStar,
-  MdClose,
-} from "react-icons/md";
+import { MdAdd, MdStar } from "react-icons/md";
 import { FaSlackHash } from "react-icons/fa";
 // @ts-ignore
 import logo from "../assets/images/logo.svg";
 import HomeHeader from "../components/HomeHeader";
 import { GoPrimitiveDot } from "react-icons/go";
 import Task from "../components/Task";
-import { getAllGroups } from "../utils/ApiCalls";
 import { getAllTasks } from "./../utils/ApiCalls";
-import { Igroup } from "../utils/Types";
-import AddGroup from "../components/AddGroup";
+import { Employee } from "../utils/Types";
 import AddTask from "../components/AddTask";
-
+import GroupList from "../components/GroupList";
 type Props = {};
 
 const Home = (props: Props) => {
-  const [Groups, setGroups] = useState<Igroup[]>([]);
   const [Tasks, setTasks] = useState(null);
-
+  const [User, setUser] = useState<Employee>();
   // load Groups and tasks
   useEffect(() => {
     const Load = async () => {
-      const groups: Igroup[] = await getAllGroups();
       const tasks = await getAllTasks();
-      setGroups(groups);
+      let user = localStorage.getItem("UserDTA");
       setTasks(tasks);
+      setUser(JSON.parse(user!));
     };
     Load();
   }, []);
@@ -45,39 +35,11 @@ const Home = (props: Props) => {
           <img src={logo} alt="" className="image-full" />
         </div>
         {/* nav */}
-        <ul className="w-56 gap-2 p-2 pt-12 menu rounded-box">
-          {" "}
-          <li className="uppercase menu-title">
-            <span>Groups</span>
-          </li>
-          {Groups &&
-            Groups.map((g: Igroup, i: number) => (
-              <li key={i}>
-                <a href="#!">
-                  <FaSlackHash />
-                  {g.name}
-                </a>
-              </li>
-            ))}
-          <li>
-            <a
-              href="#add-group"
-              className="btn btn-primary text-primary-content"
-            >
-              <MdAdd />
-              add group
-            </a>
-          </li>
-        </ul>
-
-        <AddGroup />
-
-        {/* add group */}
-        {/* <input type="checkbox"  className="modal-toggle" /> */}
+        <GroupList />
       </div>
       {/* right side */}
       <div className="flex flex-col flex-wrap flex-grow gap-2">
-        <HomeHeader />
+        <HomeHeader name={User?.name} />
         {/* sub Header */}
         <div className="flex flex-wrap justify-between gap-2 p-2 md:px-14 md:py-7">
           <div className="flex items-end gap-4">
