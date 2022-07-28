@@ -2,22 +2,31 @@ import React from "react";
 // @ts-ignore
 import HeaderImage from "../assets/images/pana.png";
 import { useForm } from "react-hook-form";
-import { ILoginBody } from "../utils/Types";
-import { ILoginRes } from "./../utils/Types";
+import { IData, Ierror } from "../utils/Types";
 import { login } from "./../utils/ApiCalls";
+import { useNavigate } from "react-router-dom";
 
 type Props = {};
 
 const Login = (props: Props) => {
+  let navigatiton = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  console.log("form errors ", errors);
   const onSubmit = async (data: any) => {
     console.log(data);
-    const loginData = await login(data);
-    console.log("loginData", loginData);
+    const loginData: IData | Ierror = await login(data);
+    if (loginData.message) {
+      console.error("Login page ", loginData.message);
+    } else {
+      localStorage.setItem("UserTkn", loginData.token!);
+      localStorage.setItem("UserDTA", JSON.stringify(loginData.employee!));
+      navigatiton("/");
+    }
   };
 
   return (
@@ -45,6 +54,13 @@ const Login = (props: Props) => {
                     className="input input-bordered"
                     {...register("email", { required: true })}
                   />
+                  {errors.email && (
+                    <label className="label">
+                      <span className="label-text-alt text-error">
+                        Reqiered
+                      </span>
+                    </label>
+                  )}{" "}
                 </div>
                 <div className="form-control">
                   <label className="label">
@@ -54,10 +70,17 @@ const Login = (props: Props) => {
                     type="password"
                     placeholder="password"
                     className="input input-bordered"
-                    {...register("password", { required: true })}
+                    {...register("password", { required: true, minLength: 8 })}
                   />
+                  {errors.password && (
+                    <label className="label">
+                      <span className="label-text-alt text-error">
+                        Reqiered / at least 8 chars{" "}
+                      </span>
+                    </label>
+                  )}{" "}
                   <label className="label">
-                    <a href="#" className="label-text-alt link link-hover">
+                    <a href="#!" className="label-text-alt link link-hover">
                       Forgot password?
                     </a>
                   </label>

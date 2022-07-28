@@ -1,10 +1,11 @@
 export interface ILoginRes {
-    data: Data;
+    data: IData;
 }
 
-export interface Data {
+export interface IData {
     token: string;
     employee: Employee;
+    message?: string | undefined,
 }
 
 export interface Employee {
@@ -15,4 +16,9 @@ export interface Employee {
 export interface ILoginBody {
     email: string;
     password: string;
+}
+export interface Ierror {
+    message: string | undefined,
+    token?: string;
+    employee?: Employee;
 }
