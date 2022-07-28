@@ -22,3 +22,10 @@ export interface Ierror {
     token?: string;
     employee?: Employee;
 }
+
+export interface Igroup {
+    createdAt: Date;
+    name: string;
+    description: string;
+    id: string;
+}

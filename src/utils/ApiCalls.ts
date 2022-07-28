@@ -17,6 +17,31 @@ export const login = async (data: ILoginBody) => {
     }
 }
 
+export const getAllGroups = async () => {
+    const res = await fetch("https://62df172a9c47ff309e8159dc.mockapi.io/group")
+    const data = await res.json()
+    return data
+}
+
+export const getAllTasks = async () => {
+    const res = await fetch("https://62df172a9c47ff309e8159dc.mockapi.io/tasks")
+    const data = await res.json()
+    return data
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // var myHeaders = new Headers();
     // myHeaders.append("Content-Type", "application/json");
 
