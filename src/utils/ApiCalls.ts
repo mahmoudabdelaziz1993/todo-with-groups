@@ -1,4 +1,4 @@
-import { ILoginBody } from "./Types"
+import { ILoginBody, Itask } from "./Types"
 
 export const login = async (data: ILoginBody) => {
     if (data.email === "user@test.com" && data.password === "password") {
@@ -43,6 +43,29 @@ export const addNewGroup = async (name: string) => {
 
 }
 
+export const addNewTask = async (params: Itask) => {
+    const res = await fetch("https://62df172a9c47ff309e8159dc.mockapi.io/tasks", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(params)
+    })
+    const data = res.json()
+    return data
+}
+
+export const editTaskStatus = async (status: string, id: string) => {
+    const res = await fetch(`https://62df172a9c47ff309e8159dc.mockapi.io/tasks/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ status: status })
+    })
+    const data = res.json()
+    return data
+}
 
 
 

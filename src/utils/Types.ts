@@ -29,3 +29,12 @@ export interface Igroup {
     description: string;
     id: string;
 }
+
+export interface Itask {
+    createdAt?: Date;
+    title: string;
+    status: string;
+    description?: string;
+    group_id: number;
+    id: string;
+}

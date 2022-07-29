@@ -5,9 +5,12 @@ import { getAllGroups } from "../utils/ApiCalls";
 import { Igroup } from "../utils/Types";
 import AddGroup from "./AddGroup";
 
-type Props = {};
+type Props = {
+  id: string;
+  setSelected: Function;
+};
 
-const GroupList = (props: Props) => {
+const GroupList = ({ id, setSelected }: Props) => {
   const [Groups, setGroups] = useState<Igroup[]>([]);
   const [Gvlidate, setGvlidate] = useState(null);
 
@@ -37,7 +40,11 @@ const GroupList = (props: Props) => {
         {Groups &&
           Groups.map((g: Igroup, i: number) => (
             <li key={i}>
-              <a href="#!">
+              <a
+                href="#!"
+                onClick={() => setSelected(g.id)}
+                className={g.id === id ? "active" : ""}
+              >
                 <FaSlackHash />
                 {g.name}
               </a>

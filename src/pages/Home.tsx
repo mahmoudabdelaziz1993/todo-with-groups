@@ -1,30 +1,38 @@
 import React, { useEffect, useState } from "react";
-import { MdAdd, MdStar } from "react-icons/md";
-import { FaSlackHash } from "react-icons/fa";
+
 // @ts-ignore
 import logo from "../assets/images/logo.svg";
 import HomeHeader from "../components/HomeHeader";
-import { GoPrimitiveDot } from "react-icons/go";
-import Task from "../components/Task";
 import { getAllTasks } from "./../utils/ApiCalls";
-import { Employee } from "../utils/Types";
-import AddTask from "../components/AddTask";
+import { Employee, Itask } from "../utils/Types";
 import GroupList from "../components/GroupList";
+import PreviewTasks from "../components/PreviewTasks";
 type Props = {};
 
 const Home = (props: Props) => {
-  const [Tasks, setTasks] = useState(null);
+  const [Tasks, setTasks] = useState<Itask[]>([]);
   const [User, setUser] = useState<Employee>();
+  const [Selected, setSelected] = useState<string>("");
+  const [TVlidate, setTVlidate] = useState(null);
   // load Groups and tasks
   useEffect(() => {
     const Load = async () => {
-      const tasks = await getAllTasks();
+      const tasks: Itask[] = await getAllTasks();
       let user = localStorage.getItem("UserDTA");
       setTasks(tasks);
+      setSelected(Tasks[0]?.id || "1");
       setUser(JSON.parse(user!));
     };
     Load();
   }, []);
+
+  useEffect(() => {
+    const load = async () => {
+      const tasks: Itask[] = await getAllTasks();
+      setTasks(tasks);
+    };
+    load();
+  }, [TVlidate]);
 
   return (
     <div className="flex flex-col flex-grow artboard sm:flex-row">
@@ -35,13 +43,19 @@ const Home = (props: Props) => {
           <img src={logo} alt="" className="image-full" />
         </div>
         {/* nav */}
-        <GroupList />
+        <GroupList id={Selected} setSelected={setSelected} />
       </div>
       {/* right side */}
       <div className="flex flex-col flex-wrap flex-grow gap-2">
         <HomeHeader name={User?.name} />
         {/* sub Header */}
-        <div className="flex flex-wrap justify-between gap-2 p-2 md:px-14 md:py-7">
+        <PreviewTasks
+          Tasks={Tasks.filter(
+            (task, i) => task.group_id?.toString() === Selected
+          )}
+          setTVlidate={setTVlidate}
+        />
+        {/* <div className="flex flex-wrap justify-between gap-2 p-2 md:px-14 md:py-7">
           <div className="flex items-end gap-4">
             <div className="">
               <h3 className="text-lg font-medium">Task Meter 25/50</h3>
@@ -63,72 +77,6 @@ const Home = (props: Props) => {
         </div>
         <AddTask />
         {/* sections */}
-        <div className="flex flex-wrap flex-grow gap-4 p-2 md:p-7 sm:flex-nowrap">
-          <div className="flex flex-col flex-grow p-4 rounded-lg shadow-xl ">
-            <h3 className="inline-flex items-center gap-2 text-xl font-medium">
-              <GoPrimitiveDot className="text-secondary" /> Todo
-            </h3>
-            <div className="h-1 divider bg-secondary"></div>
-            <div className="flex flex-col flex-grow gap-3 overflow-y-auto max-h-96">
-              <Task />
-            </div>
-            <div className="p-4">
-              <button className="w-full btn btn-lg btn-outline ">
-                <MdAdd />
-              </button>
-            </div>
-          </div>
-          <div className="flex flex-col flex-grow p-4 rounded-lg shadow-xl">
-            <h3 className="inline-flex items-center gap-2 text-xl font-medium">
-              <GoPrimitiveDot className="text-accent" /> On Progress
-            </h3>
-            <div className="h-1 divider bg-accent"></div>
-            <div className="flex flex-col flex-grow gap-3 overflow-y-auto max-h-96">
-              <Task />
-              <Task />
-              <Task />
-              <Task />
-            </div>
-            <div className="p-4">
-              <button className="w-full btn btn-lg btn-outline ">
-                <MdAdd />
-              </button>
-            </div>
-          </div>
-          <div className="flex flex-col flex-grow p-4 rounded-lg shadow-xl">
-            <h3 className="inline-flex items-center gap-2 text-xl font-medium">
-              <GoPrimitiveDot className="text-success" /> Done
-            </h3>
-            <div className="h-1 divider bg-success"></div>{" "}
-            <div className="flex flex-col flex-grow gap-3 overflow-y-auto max-h-96">
-              <Task />
-              <Task />
-              <Task />
-            </div>
-            <div className="p-4">
-              <button className="w-full btn btn-lg btn-outline ">
-                <MdAdd />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="modal" id="add-group">
-          <div className="modal-box">
-            <h3 className="text-lg font-bold">
-              Congratulations random Internet user!
-            </h3>
-            <p className="py-4">
-              You've been selected for a chance to get one year of subscription
-              to use Wikipedia for free!
-            </p>
-            <div className="modal-action">
-              <label htmlFor="my-modal" className="btn">
-                Yay!
-              </label>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
