@@ -39,7 +39,7 @@ const Login = (props: Props) => {
             <div className="card-body">
               <h1 className="text-3xl font-semibold card-title">Login</h1>
               <div className="w-16 h-1 mb-3 bg-base-content"></div>
-              <p>Welcome to Jobzella! 👋🏻</p>
+              <p>Welcome 👋🏻</p>
               <p>Please sign-in to your account and start the adventure</p>
               <br />
               {/* login form */}

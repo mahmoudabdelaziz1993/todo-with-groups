@@ -1,6 +1,25 @@
-# Getting Started with Create React App
+# Todo List App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Todo list app with todo group , todo status shelf and auth .
+
+## screenshots
+
+Light Mode
+![Alt text](/screenshots/loginL.png "Optional Title")
+![Alt text](/screenshots/light.png "Optional Title")
+
+Dark Mode
+![Alt text](/screenshots/loginD.png "Optional Title")
+![Alt text](/screenshots/dark.png "Optional Title")
+
+## feature
+
+Markup :_ Login
+_ Logout
+_ add group
+_ add task to a group
+_ update task status
+_ auto refresh data after changes
 
 ## Available Scripts
 
