@@ -1,7 +1,6 @@
 import React from "react";
 import { GoPrimitiveDot } from "react-icons/go";
 import { MdAdd, MdStar } from "react-icons/md";
-import AddTask from "./AddTask";
 import Task from "./Task";
 import { Itask } from "./../utils/Types";
 
@@ -36,7 +35,7 @@ const PreviewTasks = ({ Tasks, setTVlidate }: Props) => {
         </a>
       </div>
       {/* sections */}
-      <div className="flex flex-wrap flex-grow gap-4 p-2 md:p-7 sm:flex-nowrap">
+      <div className="flex flex-wrap flex-grow gap-4 p-2 md:p-7 lg:flex-nowrap">
         <div className="flex flex-col flex-grow p-4 rounded-lg shadow-xl bs basis-1/3 ">
           <h3 className="inline-flex items-center gap-2 text-xl font-medium">
             <GoPrimitiveDot className="text-secondary" /> Todo
