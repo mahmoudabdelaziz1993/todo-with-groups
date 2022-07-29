@@ -17,6 +17,13 @@ export const login = async (data: ILoginBody) => {
     }
 }
 
+export const logOut = () => {
+    localStorage.removeItem("UserDTA");
+    localStorage.removeItem("UserTkn")
+    window.location.reload()
+
+}
+
 export const getAllGroups = async () => {
     const res = await fetch("https://62df172a9c47ff309e8159dc.mockapi.io/group")
     const data = await res.json()
