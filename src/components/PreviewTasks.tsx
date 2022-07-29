@@ -35,7 +35,6 @@ const PreviewTasks = ({ Tasks, setTVlidate }: Props) => {
           Add Task
         </a>
       </div>
-      <AddTask />
       {/* sections */}
       <div className="flex flex-wrap flex-grow gap-4 p-2 md:p-7 sm:flex-nowrap">
         <div className="flex flex-col flex-grow p-4 rounded-lg shadow-xl bs basis-1/3 ">

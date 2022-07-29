@@ -7,6 +7,7 @@ import { getAllTasks } from "./../utils/ApiCalls";
 import { Employee, Itask } from "../utils/Types";
 import GroupList from "../components/GroupList";
 import PreviewTasks from "../components/PreviewTasks";
+import AddTask from "../components/AddTask";
 type Props = {};
 
 const Home = (props: Props) => {
@@ -20,7 +21,7 @@ const Home = (props: Props) => {
       const tasks: Itask[] = await getAllTasks();
       let user = localStorage.getItem("UserDTA");
       setTasks(tasks);
-      setSelected(Tasks[0]?.id || "1");
+      setSelected(Tasks[0].id);
       setUser(JSON.parse(user!));
     };
     Load();
@@ -55,28 +56,7 @@ const Home = (props: Props) => {
           )}
           setTVlidate={setTVlidate}
         />
-        {/* <div className="flex flex-wrap justify-between gap-2 p-2 md:px-14 md:py-7">
-          <div className="flex items-end gap-4">
-            <div className="">
-              <h3 className="text-lg font-medium">Task Meter 25/50</h3>
-              <progress
-                className="w-56 progress progress-primary"
-                value="25"
-                max="50"
-              ></progress>
-            </div>
-            <p className="inline-flex items-center gap-2 text-warning">
-              <MdStar />
-              Good Job!
-            </p>
-          </div>
-          <a href="#add-task" className="gap-2 btn btn-primary">
-            <MdAdd />
-            Add Task
-          </a>
-        </div>
-        <AddTask />
-        {/* sections */}
+        <AddTask setTVlidate={setTVlidate} Selected={Selected} />
       </div>
     </div>
   );
