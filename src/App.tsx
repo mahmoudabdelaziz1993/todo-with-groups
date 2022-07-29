@@ -9,9 +9,9 @@ function App() {
   const [Theme, toggleTheme] = useTheme();
   return (
     <div className="artboard  min-h-screen  flex flex-col" data-theme={Theme}>
-      <div className="flex flex-row-reverse p-4 absolute sm:left-10 sm:bottom-0 sm:right-full right-0 ">
+      {/* <div className="flex flex-row-reverse p-4 absolute sm:left-10 sm:bottom-0 sm:right-full right-0 ">
         <ThemeToggle Theme={Theme} toggleTheme={toggleTheme} />
-      </div>
+      </div> */}
       <Routes>
         <Route path="/Login" element={<Login />} />
 
