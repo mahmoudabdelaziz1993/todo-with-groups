@@ -14,7 +14,7 @@ type Props = {
 
 const Task = ({ task, setTVlidate }: Props) => {
   dayjs.extend(relativeTime);
-
+  let statsArr = ["1", "2", "3"];
   const changestatus = async (status: string, id: string) => {
     const res: Itask = await editTaskStatus(status, id);
     // const data = await res.json();
@@ -32,21 +32,17 @@ const Task = ({ task, setTVlidate }: Props) => {
             tabIndex={0}
             className="p-2 shadow dropdown-content menu bg-base-300 rounded-box w-52"
           >
-            <li>
-              <button className="" onClick={() => changestatus("1", task.id)}>
-                Todo
-              </button>
-            </li>
-            <li>
-              <button className="" onClick={() => changestatus("2", task.id)}>
-                On Progress
-              </button>
-            </li>
-            <li>
-              <button className="" onClick={() => changestatus("3", task.id)}>
-                done
-              </button>
-            </li>
+            {statsArr
+              .filter((s, i) => s !== task.status)
+              .map((s, i) => (
+                <li key={s}>
+                  <button className="" onClick={() => changestatus(s, task.id)}>
+                    {s === "1" && "Todo"}
+                    {s === "2" && "on progress"}
+                    {s === "3" && "Done"}
+                  </button>
+                </li>
+              ))}
           </ul>
         </div>
       </div>
