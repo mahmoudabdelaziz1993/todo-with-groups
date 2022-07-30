@@ -14,7 +14,7 @@ Dark Mode
 
 ## feature
 
-Markup :_ Login
+_ Login
 _ Logout
 _ add group
 _ add task to a group
