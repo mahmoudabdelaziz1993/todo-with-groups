@@ -48,9 +48,9 @@ const PreviewTasks = ({ Tasks, setTVlidate }: Props) => {
               ))}
           </div>
           <div className="p-4">
-            <button className="w-full btn btn-lg btn-outline ">
+            <a href={"#add-task"} className="w-full btn btn-lg btn-outline ">
               <MdAdd />
-            </button>
+            </a>
           </div>
         </div>
         <div className="flex flex-col flex-grow p-4 rounded-lg shadow-xl bs basis-1/3">
@@ -65,9 +65,9 @@ const PreviewTasks = ({ Tasks, setTVlidate }: Props) => {
               ))}
           </div>
           <div className="p-4">
-            <button className="w-full btn btn-lg btn-outline ">
+            <a href={"#add-task"} className="w-full btn btn-lg btn-outline ">
               <MdAdd />
-            </button>
+            </a>
           </div>
         </div>
         <div className="flex flex-col flex-grow p-4 rounded-lg shadow-xl bs basis-1/3">
@@ -82,9 +82,9 @@ const PreviewTasks = ({ Tasks, setTVlidate }: Props) => {
               ))}
           </div>
           <div className="p-4">
-            <button className="w-full btn btn-lg btn-outline ">
+            <a href={"#add-task"} className="w-full btn btn-lg btn-outline ">
               <MdAdd />
-            </button>
+            </a>
           </div>
         </div>
       </div>
